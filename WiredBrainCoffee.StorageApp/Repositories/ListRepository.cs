@@ -1,11 +1,13 @@
-﻿namespace WiredBrainCoffee.StorageApp;
+﻿using WiredBrainCoffee.StorageApp.Entities.Common;
 
-public class Repository<TEntity> where TEntity : class, IEntity, new()
+namespace WiredBrainCoffee.StorageApp.Repositories;
+
+public class ListRepository<TEntity> : IRepository<TEntity> where TEntity : IEntity
 {
     private readonly List<TEntity> _entities = new();
     private int _id;
 
-    public Repository() => _id = 0;
+    public ListRepository() => _id = 0;
 
     public TEntity? FirstOrDefault(int id) => _entities.FirstOrDefault(x => x.Id == id);
 
@@ -16,10 +18,5 @@ public class Repository<TEntity> where TEntity : class, IEntity, new()
     public void Save() =>
         _entities.Where(x => x.Id == 0)
             .ToList()
-            .ForEach(entity =>
-            {
-                entity.Id = ++_id;
-
-                Console.WriteLine(entity);
-            });
+            .ForEach(entity => entity.Id = ++_id);
 }

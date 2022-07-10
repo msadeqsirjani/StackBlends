@@ -1,7 +1,17 @@
-﻿namespace WiredBrainCoffee.StorageApp;
+﻿using WiredBrainCoffee.StorageApp.Entities.Common;
+
+namespace WiredBrainCoffee.StorageApp.Entities;
 
 public class Organization : Entity
 {
+    /// <summary>
+    /// Use this ctor for EntityFrameworkCore
+    /// </summary>
+    private Organization()
+    {
+
+    }
+
     public Organization(string name)
     {
         Name = name;

@@ -1,4 +1,4 @@
-﻿namespace WiredBrainCoffee.StorageApp;
+﻿namespace WiredBrainCoffee.StorageApp.Entities.Common;
 
 public class Entity : IEntity
 {
