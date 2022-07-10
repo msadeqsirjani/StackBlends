@@ -7,17 +7,14 @@ public class Employee : Entity
     /// <summary>
     /// Use this ctor for EntityFrameworkCore
     /// </summary>
-    private Employee()
-    {
-
-    }
+    protected Employee() { }
 
     public Employee(string name)
     {
         Name = name;
     }
 
-    public string Name { get; }
+    public string Name { get; private set; }
 
     public override string ToString() => $"{nameof(Employee)}\nId: {Id}, Name: {Name}";
 }

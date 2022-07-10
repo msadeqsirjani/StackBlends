@@ -15,6 +15,8 @@ public class SqlRepository<TEntity> : IRepository<TEntity> where TEntity : class
         _db = _context.Set<TEntity>();
     }
 
+    public IEnumerable<TEntity> Select() => _db.AsNoTracking().ToList();
+
     public TEntity? FirstOrDefault(int id) => _db.FirstOrDefault(x => x.Id == id);
 
     public void Add(TEntity entity) => _db.Add(entity);

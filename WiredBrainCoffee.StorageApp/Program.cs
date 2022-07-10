@@ -1,35 +1,39 @@
 ﻿using WiredBrainCoffee.StorageApp.Entities;
+using WiredBrainCoffee.StorageApp.Entities.Common;
 using WiredBrainCoffee.StorageApp.Repositories;
 
 SqlRepository<Employee> employeeRepository = new();
+
+SaveEmployee(employeeRepository, new Employee("Thomas"));
+SaveManager(employeeRepository, new Manager("Smith"));
+ShowEntities(employeeRepository);
+
 ListRepository<Organization> organizationRepository = new();
 
-var thomas = new Employee("Thomas");
+SaveOrganization(organizationRepository, new Organization("Jack"));  
+ShowEntities(organizationRepository);
 
-SaveEmployees(employeeRepository, thomas);
-
-RemoveEmployees(employeeRepository, thomas);
-
-SaveOrganizations(organizationRepository);
-
-Console.WriteLine(employeeRepository.FirstOrDefault(2));
-Console.WriteLine(organizationRepository.FirstOrDefault(1));
-
-void SaveEmployees(IRepository<Employee> repository, Employee employee)
+void SaveEmployee(IWriteRepository<Employee> repository, Employee entity)
 {
-    repository.Add(employee);
-    repository.Add(new Employee("David"));
+    repository.Add(entity);
     repository.Save();
 }
 
-void RemoveEmployees(IRepository<Employee> repository, Employee employee)
+void SaveManager(IWriteRepository<Manager> repository, Manager entity)
 {
-    repository.Remove(employee);
+    repository.Add(entity);
     repository.Save();
 }
 
-void SaveOrganizations(IRepository<Organization> repository)
+void SaveOrganization(IWriteRepository<Organization> repository, Organization entity)
 {
-    repository.Add(new Organization("Jack"));
+    repository.Add(entity);
     repository.Save();
+}
+
+void ShowEntities(IReadRepository<IEntity> repository)
+{
+    repository.Select()
+        .ToList()
+        .ForEach(Console.WriteLine);
 }

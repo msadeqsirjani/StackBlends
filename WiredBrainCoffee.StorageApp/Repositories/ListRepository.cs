@@ -9,6 +9,8 @@ public class ListRepository<TEntity> : IRepository<TEntity> where TEntity : IEnt
 
     public ListRepository() => _id = 0;
 
+    public IEnumerable<TEntity> Select() => _entities;
+
     public TEntity? FirstOrDefault(int id) => _entities.FirstOrDefault(x => x.Id == id);
 
     public void Add(TEntity entity) => _entities.Add(entity);
