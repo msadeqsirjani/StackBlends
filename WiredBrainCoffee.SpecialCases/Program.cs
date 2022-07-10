@@ -10,3 +10,13 @@ Console.WriteLine($"Container<bool>: {Container<bool>.Counter}");
 Console.WriteLine($"ContainerBase: {ContainerBase.CounterBase}");
 
 container.Print("hello world");
+
+Console.WriteLine(Add(2, 3));
+Console.WriteLine(Add(2.6, 3.4));
+
+T Add<T>(T a, T b) where T : notnull
+{
+    dynamic x = a;
+    dynamic y = b;
+    return x + y;
+}
