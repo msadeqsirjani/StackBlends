@@ -11,11 +11,17 @@ public class SqlRepository<TEntity> : IRepository<TEntity> where TEntity : class
         _db = _context.Set<TEntity>();
     }
 
+    public event EventHandler<TEntity>? Handler;
+
     public IEnumerable<TEntity> Select() => _db.AsNoTracking().ToList();
 
     public TEntity? FirstOrDefault(int id) => _db.FirstOrDefault(x => x.Id == id);
 
-    public void Add(TEntity entity) => _db.Add(entity);
+    public void Add(TEntity entity)
+    {
+        _db.Add(entity);
+        Handler?.Invoke(this, entity);
+    }
 
     public void Remove(TEntity entity) => _db.Remove(entity);
 

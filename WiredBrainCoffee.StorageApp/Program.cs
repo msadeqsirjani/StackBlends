@@ -9,12 +9,14 @@ ShowEntities(employeeRepository);
 
 SqlRepository<Organization> organizationRepository = new();
 
-organizationRepository.SaveEntities( new Organization("Jack"), new Organization("Steven"));
+organizationRepository.Handler += (_, _) => { Console.WriteLine("This method called fom handler"); };
+
+organizationRepository.SaveEntities(new Organization("Jack"), new Organization("Steven"));
 ShowEntities(organizationRepository);
 
 void SaveEntities<TEntity>(IWriteRepository<TEntity> repository, params TEntity[] entities)
 {
-    foreach (var entity in entities) 
+    foreach (var entity in entities)
         repository.Add(entity);
 
     repository.Save();
