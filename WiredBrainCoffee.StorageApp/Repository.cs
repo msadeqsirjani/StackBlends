@@ -1,6 +1,6 @@
 ﻿namespace WiredBrainCoffee.StorageApp;
 
-public class Repository<TEntity> where TEntity : class, IEntity
+public class Repository<TEntity> where TEntity : class, IEntity, new()
 {
     private readonly List<TEntity> _entities = new();
     private int _id;
