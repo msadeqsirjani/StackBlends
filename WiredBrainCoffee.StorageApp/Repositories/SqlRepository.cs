@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WiredBrainCoffee.StorageApp.Data;
-using WiredBrainCoffee.StorageApp.Entities.Common;
-
-namespace WiredBrainCoffee.StorageApp.Repositories;
+﻿namespace WiredBrainCoffee.StorageApp.Repositories;
 
 public class SqlRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
 {

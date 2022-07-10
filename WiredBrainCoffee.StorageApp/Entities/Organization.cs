@@ -1,13 +1,11 @@
-﻿using WiredBrainCoffee.StorageApp.Entities.Common;
-
-namespace WiredBrainCoffee.StorageApp.Entities;
+﻿namespace WiredBrainCoffee.StorageApp.Entities;
 
 public class Organization : Entity
 {
     /// <summary>
     /// Use this ctor for EntityFrameworkCore
     /// </summary>
-    private Organization()
+    protected Organization()
     {
 
     }
@@ -17,7 +15,7 @@ public class Organization : Entity
         Name = name;
     }
 
-    public string Name { get; }
+    public string Name { get; private set; }
 
     public override string ToString() => $"{nameof(Organization)}\nId: {Id}, Name: {Name}";
 }

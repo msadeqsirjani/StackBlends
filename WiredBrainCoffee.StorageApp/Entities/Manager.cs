@@ -2,7 +2,7 @@
 
 public class Manager : Employee
 {
-    private Manager() { }
+    protected Manager() { }
 
     public Manager(string name) : base(name)
     {

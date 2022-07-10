@@ -1,33 +1,22 @@
-﻿using WiredBrainCoffee.StorageApp.Entities;
-using WiredBrainCoffee.StorageApp.Entities.Common;
-using WiredBrainCoffee.StorageApp.Repositories;
+﻿using WiredBrainCoffee.StorageApp.Extensions;
 
-SqlRepository<Employee> employeeRepository = new();
+ListRepository<Employee> employeeRepository = new();
 
-SaveEmployee(employeeRepository, new Employee("Thomas"));
-SaveManager(employeeRepository, new Manager("Smith"));
+var anotherDan = new Employee("Dan").Clone();
+
+SaveEntities(employeeRepository, new Employee("Dan"), new Employee("Thomas"), new Manager("Smith"));
 ShowEntities(employeeRepository);
 
-ListRepository<Organization> organizationRepository = new();
+SqlRepository<Organization> organizationRepository = new();
 
-SaveOrganization(organizationRepository, new Organization("Jack"));  
+organizationRepository.SaveEntities( new Organization("Jack"), new Organization("Steven"));
 ShowEntities(organizationRepository);
 
-void SaveEmployee(IWriteRepository<Employee> repository, Employee entity)
+void SaveEntities<TEntity>(IWriteRepository<TEntity> repository, params TEntity[] entities)
 {
-    repository.Add(entity);
-    repository.Save();
-}
+    foreach (var entity in entities) 
+        repository.Add(entity);
 
-void SaveManager(IWriteRepository<Manager> repository, Manager entity)
-{
-    repository.Add(entity);
-    repository.Save();
-}
-
-void SaveOrganization(IWriteRepository<Organization> repository, Organization entity)
-{
-    repository.Add(entity);
     repository.Save();
 }
 

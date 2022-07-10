@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WiredBrainCoffee.StorageApp.Entities;
-
-namespace WiredBrainCoffee.StorageApp.Data;
+﻿namespace WiredBrainCoffee.StorageApp.Data;
 
 public class StorageAppDbContext : DbContext
 {

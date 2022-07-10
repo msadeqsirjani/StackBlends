@@ -1,6 +1,4 @@
-﻿using WiredBrainCoffee.StorageApp.Entities.Common;
-
-namespace WiredBrainCoffee.StorageApp.Repositories;
+﻿namespace WiredBrainCoffee.StorageApp.Repositories;
 
 public class ListRepository<TEntity> : IRepository<TEntity> where TEntity : IEntity
 {

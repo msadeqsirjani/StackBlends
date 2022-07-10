@@ -1,6 +1,4 @@
-﻿using WiredBrainCoffee.StorageApp.Entities.Common;
-
-namespace WiredBrainCoffee.StorageApp.Entities;
+﻿namespace WiredBrainCoffee.StorageApp.Entities;
 
 public class Employee : Entity
 {
@@ -15,6 +13,8 @@ public class Employee : Entity
     }
 
     public string Name { get; private set; }
+
+    public void SetName(string name) => Name = name;
 
     public override string ToString() => $"{nameof(Employee)}\nId: {Id}, Name: {Name}";
 }
